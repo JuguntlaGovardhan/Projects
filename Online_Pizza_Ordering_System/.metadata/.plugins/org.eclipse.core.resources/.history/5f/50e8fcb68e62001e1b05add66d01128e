@@ -1,0 +1,13 @@
+package com.abcbank.account.service;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@FeignClient("Rules-Service")
+public interface AccountProxy {
+
+	@GetMapping("/rules/evaluateMinBal/{balance}/{accountId}")
+	public RuleStatus evaluateMinBalance(@PathVariable("balance") Double balance, @PathVariable("accountId") Long accountId);
+	
+}

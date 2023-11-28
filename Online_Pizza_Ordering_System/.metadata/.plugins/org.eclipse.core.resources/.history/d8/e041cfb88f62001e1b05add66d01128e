@@ -1,0 +1,14 @@
+package com.abcbank.account.service;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@FeignClient("Account-Service")
+public interface AccountProxyForTransactions {
+
+	@GetMapping("/getTransactionsByAccountId/{accountId}")
+	public List<Transactions> getTransactionsByAccountId(@PathVariable("accountId") Long accountId);
+}
